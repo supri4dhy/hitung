@@ -48,7 +48,6 @@
 </head>
 <body class="bg-gradient-to-b from-cyan-400 to-blue-600 min-h-screen flex items-center justify-center p-2 sm:p-4">
 
-    <!-- Layar Utama -->
     <div id="welcomeScreen" class="screen active flex-col items-center justify-center text-center text-white">
         <h1 class="text-5xl md:text-7xl font-bold text-yellow-300 drop-shadow-lg mb-4">Petualangan Angka Ajaib</h1>
         <svg class="kiko-character my-6 h-auto w-32" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
@@ -59,7 +58,6 @@
         <button id="startButton" class="bg-yellow-400 hover:bg-yellow-500 text-blue-800 font-bold text-2xl py-4 px-10 rounded-full shadow-lg transform hover:scale-105 transition-transform">Mulai!</button>
     </div>
 
-    <!-- Layar Pilih Mode (+/-) -->
     <div id="modeSelectScreen" class="screen flex-col items-center justify-center text-center text-white">
         <h2 class="text-4xl font-bold mb-8 drop-shadow-md">Pilih Operasi Hitung</h2>
         <div class="w-full max-w-md mt-8">
@@ -71,7 +69,6 @@
         <button id="backToHomeBtn" class="mt-8 text-yellow-300 hover:text-white transition">Kembali ke Menu Awal</button>
     </div>
 
-    <!-- Layar Pilih Level (1-5) -->
     <div id="levelSelectScreen" class="screen flex-col items-center justify-center text-center text-white">
         <h2 class="text-4xl font-bold mb-8 drop-shadow-md">Pilih Level</h2>
         <div class="w-full max-w-2xl grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -84,9 +81,7 @@
         <button id="backToModeBtn" class="mt-8 text-yellow-300 hover:text-white transition">Kembali Pilih Mode</button>
     </div>
     
-    <!-- Layar Game (Dirombak untuk Mobile) -->
     <div id="gameScreen" class="screen flex-col w-full h-full max-w-md mx-auto justify-between py-4">
-        <!-- Bagian Atas: Info & Soal -->
         <div>
             <div class="w-full flex justify-between items-center text-white mb-4 px-2">
                 <div class="font-bold text-xl">Level: <span id="levelDisplay"></span></div>
@@ -95,13 +90,11 @@
             <div class="bg-white/80 backdrop-blur-sm p-4 sm:p-6 rounded-2xl shadow-2xl w-full">
                 <div class="flex justify-end">
                      <div id="problem-grid" class="inline-grid items-center gap-x-2 sm:gap-x-3 text-6xl font-bold tracking-wider">
-                        <!-- Konten grid dibuat oleh JavaScript -->
                     </div>
                 </div>
             </div>
         </div>
         
-        <!-- Bagian Tengah: Karakter & Pesan -->
         <div class="w-full">
             <div id="feedback" class="text-4xl text-white text-center font-bold h-12 mb-2"></div>
              <div class="flex items-end mt-2 w-full max-w-xs mx-auto">
@@ -112,20 +105,19 @@
             </div>
         </div>
 
-        <!-- Bagian Bawah: Keypad & Tombol Keluar -->
         <div class="w-full flex flex-col items-center">
-            <div id="keypad" class="grid grid-cols-3 gap-3 w-full max-w-xs bg-white/30 p-4 rounded-xl">
-                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md text-gray-800" data-key="7">7</button>
-                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md text-gray-800" data-key="8">8</button>
-                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md text-gray-800" data-key="9">9</button>
-                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md text-gray-800" data-key="4">4</button>
-                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md text-gray-800" data-key="5">5</button>
-                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md text-gray-800" data-key="6">6</button>
-                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md text-gray-800" data-key="1">1</button>
-                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md text-gray-800" data-key="2">2</button>
-                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md text-gray-800" data-key="3">3</button>
-                <button class="keypad-btn bg-yellow-400 hover:bg-yellow-500 text-xl font-bold p-3 sm:p-4 rounded-lg shadow-md" data-key="del">Hapus</button>
-                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md col-span-2" data-key="0">0</button>
+            <div id="keypad" class="grid grid-cols-6 gap-2 w-full max-w-xs bg-white/30 p-3 rounded-xl">
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 rounded-lg shadow-md text-gray-800" data-key="1">1</button>
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 rounded-lg shadow-md text-gray-800" data-key="2">2</button>
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 rounded-lg shadow-md text-gray-800" data-key="3">3</button>
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 rounded-lg shadow-md text-gray-800" data-key="4">4</button>
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 rounded-lg shadow-md text-gray-800" data-key="5">5</button>
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 rounded-lg shadow-md text-gray-800" data-key="6">6</button>
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 rounded-lg shadow-md text-gray-800" data-key="7">7</button>
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 rounded-lg shadow-md text-gray-800" data-key="8">8</button>
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 rounded-lg shadow-md text-gray-800" data-key="9">9</button>
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 rounded-lg shadow-md col-span-2" data-key="0">0</button>
+                <button class="keypad-btn bg-yellow-400 hover:bg-yellow-500 text-xl font-bold p-3 rounded-lg shadow-md" data-key="del">Hapus</button>
             </div>
             <button id="backToMenuFromGameBtn" class="mt-4 bg-red-500/80 hover:bg-red-500 text-white font-bold py-2 px-6 rounded-full shadow-lg text-sm">Keluar</button>
         </div>
@@ -162,7 +154,6 @@
     </div>
 
 <script>
-    // --- Referensi Elemen DOM ---
     const screens = document.querySelectorAll('.screen');
     const welcomeScreen = document.getElementById('welcomeScreen');
     const modeSelectScreen = document.getElementById('modeSelectScreen');
@@ -198,7 +189,6 @@
 
     let currentInput;
 
-    // --- State Aplikasi ---
     let currentLevel = 1;
     let currentMode = 'addition';
     let questions = [];
@@ -206,7 +196,6 @@
     let score = 0;
     const TOTAL_QUESTIONS = 5;
 
-    // --- State untuk Level 2+ ---
     let qNum1Arr = [];
     let qNum2Arr = [];
     let currentColumn = 0;
@@ -219,38 +208,37 @@
     };
     const randInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
-    // --- Logika Pembuatan Soal ---
     function generateQuestions() {
         questions = [];
         for (let i = 0; i < TOTAL_QUESTIONS; i++) {
             let num1, num2;
-            const digits = currentLevel > 2 ? currentLevel + 1 : 2;
+            const digits = currentLevel >= 3 ? currentLevel : 2;
             const min = 10 ** (digits - 1);
             const max = (10 ** digits) - 1;
 
-            if (currentLevel === 1) { // 2 digit tanpa simpan/pinjam
+            if (currentLevel === 1) {
                 if (currentMode === 'addition') {
                     do {
                         num1 = randInt(10, 88);
                         num2 = randInt(10, 88);
                     } while (String(num1 + num2).length > 2 || (num1 % 10) + (num2 % 10) >= 10);
-                } else { // subtraction
+                } else {
                     do {
                         num1 = randInt(20, 99);
                         num2 = randInt(10, num1 - 1);
                     } while ((num1 % 10) < (num2 % 10));
                 }
-            } else if (currentLevel === 2) { // 2 digit dengan simpan/pinjam
+            } else if (currentLevel === 2) {
                  if (currentMode === 'addition') {
                     do { num1 = randInt(11, 88); num2 = randInt(11, 88); } while ((num1 % 10) + (num2 % 10) < 10);
-                } else { // subtraction
+                } else {
                     do { num1 = randInt(21, 98); num2 = randInt(11, num1 - 1); } while ((num1 % 10) >= (num2 % 10));
                 }
-            } else { // Level 3, 4, 5
+            } else {
                 num1 = randInt(min, max);
                 num2 = randInt(min, max);
                 if (currentMode === 'subtraction' && num1 < num2) {
-                    [num1, num2] = [num2, num1]; // Pastikan num1 lebih besar
+                    [num1, num2] = [num2, num1];
                 }
             }
             questions.push({ num1, num2, answer: currentMode === 'addition' ? num1 + num2 : num1 - num2 });
@@ -509,7 +497,6 @@
         kikoMessage.textContent = msg;
     }
     
-    // --- Event Listeners ---
     startButton.addEventListener('click', () => showScreen('modeSelectScreen'));
     backToHomeBtn.addEventListener('click', () => showScreen('welcomeScreen'));
     backToModeBtn.addEventListener('click', () => showScreen('modeSelectScreen'));
@@ -552,7 +539,6 @@
         showScreen('welcomeScreen');
     });
 
-    // Init
     showScreen('welcomeScreen');
 </script>
 </body>
