@@ -18,7 +18,6 @@
         .screen.active { display: flex; }
         .keypad-btn { transition: all 0.1s ease; }
         .keypad-btn:active { transform: scale(0.95); }
-        .star-container { filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
         #confirmModal, #levelInfoModal { display: none; }
         #confirmModal.active, #levelInfoModal.active { display: flex; }
 
@@ -39,11 +38,7 @@
 
     <div id="welcomeScreen" class="screen active flex-col items-center justify-center text-center text-white">
         <h1 class="text-5xl md:text-7xl font-bold text-yellow-300 drop-shadow-lg mb-4">Petualangan Angka Ajaib</h1>
-        <svg class="kiko-character my-6 h-auto w-32" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <path fill="#F2A25C" d="M49.8,-53.4C63.2,-42.9,71.8,-26.6,74.5,-9.5C77.2,7.6,73.9,25.4,63.9,39.3C53.8,53.2,36.9,63.1,19.9,68.9C2.9,74.7,-14.3,76.4,-30.7,70.5C-47.1,64.7,-62.7,51.4,-70.2,35.4C-77.7,19.4,-77.1,0.8,-70.7,-14.8C-64.4,-30.4,-52.3,-43,-38.7,-51.2C-25,-59.4,-9.9,-63.3,4.9,-64.3C19.7,-65.3,36.5,-63.9,49.8,-53.4Z" transform="translate(100 100)" />
-            <circle cx="90" cy="80" r="8" fill="black"/><circle cx="130" cy="80" r="8" fill="black"/><path d="M 100 95 Q 110 110 120 95" stroke="black" stroke-width="4" fill="none" />
-        </svg>
-        <p class="text-xl mb-8">Ayo belajar berhitung bersama Kiko!</p>
+        <p class="text-xl mt-4 mb-8">Ayo belajar berhitung!</p>
         <button id="startButton" class="bg-yellow-400 hover:bg-yellow-500 text-blue-800 font-bold text-2xl py-4 px-10 rounded-full shadow-lg transform hover:scale-105 transition-transform">Mulai!</button>
     </div>
 
@@ -87,18 +82,18 @@
         </div>
         
         <div class="w-full flex flex-col items-center">
-            <div id="keypad" class="grid grid-cols-3 gap-3 w-full bg-white/30 p-4 rounded-xl">
-                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md text-gray-800" data-key="1">1</button>
-                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md text-gray-800" data-key="2">2</button>
-                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md text-gray-800" data-key="3">3</button>
-                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md text-gray-800" data-key="4">4</button>
-                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md text-gray-800" data-key="5">5</button>
-                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md text-gray-800" data-key="6">6</button>
-                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md text-gray-800" data-key="7">7</button>
-                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md text-gray-800" data-key="8">8</button>
-                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md text-gray-800" data-key="9">9</button>
-                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md" data-key="0">0</button>
-                <button class="keypad-btn bg-yellow-400 hover:bg-yellow-500 text-xl font-bold p-3 sm:p-4 rounded-lg shadow-md col-span-2" data-key="del">Hapus</button>
+            <div id="keypad" class="grid grid-cols-6 gap-2 w-full bg-white/30 p-3 rounded-xl">
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 rounded-lg shadow-md text-gray-800" data-key="1">1</button>
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 rounded-lg shadow-md text-gray-800" data-key="2">2</button>
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 rounded-lg shadow-md text-gray-800" data-key="3">3</button>
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 rounded-lg shadow-md text-gray-800" data-key="4">4</button>
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 rounded-lg shadow-md text-gray-800" data-key="5">5</button>
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 rounded-lg shadow-md text-gray-800" data-key="6">6</button>
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 rounded-lg shadow-md text-gray-800" data-key="7">7</button>
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 rounded-lg shadow-md text-gray-800" data-key="8">8</button>
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 rounded-lg shadow-md text-gray-800" data-key="9">9</button>
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 rounded-lg shadow-md" data-key="0">0</button>
+                <button class="keypad-btn bg-yellow-400 hover:bg-yellow-500 text-xl font-bold p-3 rounded-lg shadow-md col-span-2" data-key="del">Hapus</button>
             </div>
         </div>
     </div>
@@ -140,27 +135,22 @@
     const levelSelectScreen = document.getElementById('levelSelectScreen');
     const gameScreen = document.getElementById('gameScreen');
     const resultScreen = document.getElementById('resultScreen');
-    
     const startButton = document.getElementById('startButton');
     const backToHomeBtn = document.getElementById('backToHomeBtn');
     const backToModeBtn = document.getElementById('backToModeBtn');
-    
     const levelDisplay = document.getElementById('levelDisplay');
     const scoreDisplay = document.getElementById('scoreDisplay');
     const problemGrid = document.getElementById('problem-grid');
     const keypad = document.getElementById('keypad');
     const feedbackEl = document.getElementById('feedback');
-    
     const finalScoreEl = document.getElementById('finalScore');
     const starContainer = document.getElementById('starContainer');
     const playAgainBtn = document.getElementById('playAgainBtn');
     const mainMenuBtn = document.getElementById('mainMenuBtn');
     const backToMenuFromGameBtn = document.getElementById('backToMenuFromGameBtn');
-    
     const confirmModal = document.getElementById('confirmModal');
     const confirmYesBtn = document.getElementById('confirmYesBtn');
     const confirmNoBtn = document.getElementById('confirmNoBtn');
-    
     const levelInfoModal = document.getElementById('levelInfoModal');
     const infoModalTitle = document.getElementById('infoModalTitle');
     const infoModalText = document.getElementById('infoModalText');
@@ -173,7 +163,6 @@
     let currentQuestionIndex = 0;
     let score = 0;
     const TOTAL_QUESTIONS = 5;
-
     let qNum1Arr = [];
     let qNum2Arr = [];
     let currentColumn = 0;
@@ -230,11 +219,10 @@
         feedbackEl.textContent = '';
         generateQuestions();
         
+        infoModalTitle.textContent = `Level ${currentLevel}: Langkah per Langkah`;
         if (currentLevel === 1) {
-            infoModalTitle.textContent = "Level 1: Langkah per Langkah";
-            infoModalText.innerHTML = "Sama seperti level lain, tapi tanpa menyimpan. Hitung per kolom dari kanan, lalu tekan tombol <b>Cek</b>.";
+             infoModalText.innerHTML = "Hitung per kolom dari kanan. Level ini mudah, tanpa menyimpan!";
         } else {
-            infoModalTitle.textContent = `Level ${currentLevel}: Langkah per Langkah`;
             infoModalText.innerHTML = "Hitung satu kolom dari kanan, lalu ketik <b>hasilnya</b> (misal: '13') dan tekan tombol <b>Cek</b> untuk lanjut.";
         }
         levelInfoModal.classList.add('active');
@@ -306,11 +294,11 @@
         const answerCell = document.createElement('div');
         answerCell.className = `col-span-${numDigits} text-blue-600 flex justify-end items-center text-right`;
         answerCell.innerHTML = `
-            <span id="finalAnswerDisplay"></span>
             <div id="currentInputWrapper" class="inline-flex items-center">
                 <span id="currentInput" class="text-gray-400"></span>
                 <span class="animate-ping">|</span>
             </div>
+            <span id="finalAnswerDisplay"></span>
         `;
         problemGrid.appendChild(answerCell);
         
@@ -341,7 +329,7 @@
         let d1 = qNum1Arr[colIndex1] ?? 0;
         let d2 = qNum2Arr[colIndex1] ?? 0;
         
-        const currentCarry = currentLevel === 1 ? 0 : carry;
+        const currentCarry = carry;
 
         if (currentMode === 'addition') {
             const correctSum = d1 + d2 + currentCarry;
@@ -366,12 +354,12 @@
                 }
                 moveToNextStep();
             } else {
-                handleIncorrectAnswer(true);
+                handleIncorrectAnswer();
             }
         } else {
             let tempD1 = d1 + currentCarry;
 
-            if (currentLevel > 1 && tempD1 < d2) {
+            if (tempD1 < d2) {
                 let borrowFromIndex = colIndex1 - 1;
                 if(borrowFromIndex >= 0){
                     qNum1Arr[borrowFromIndex]--;
@@ -387,7 +375,7 @@
                 carry = 0;
                 moveToNextStep();
             } else {
-                handleIncorrectAnswer(true);
+                handleIncorrectAnswer();
             }
         }
     }
@@ -418,8 +406,8 @@
         }, 1800);
     }
     
-    function handleIncorrectAnswer(isStepByStep = false) {
-        feedbackEl.textContent = 'Salah! 😥';
+    function handleIncorrectAnswer() {
+        feedbackEl.textContent = 'Salah! �';
         feedbackEl.className = 'text-4xl text-red-400 text-center font-bold h-12 mt-4';
         currentInput.textContent = '';
     }
@@ -483,3 +471,4 @@
 </script>
 </body>
 </html>
+�
