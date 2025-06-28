@@ -19,17 +19,6 @@
         .keypad-btn { transition: all 0.1s ease; }
         .keypad-btn:active { transform: scale(0.95); }
         .star-container { filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
-        .kiko-character { width: 100px; height: auto; }
-        .speech-bubble {
-            position: relative; background: #ffffff; border-radius: .4em;
-            padding: 0.75rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        .speech-bubble:after {
-            content: ''; position: absolute; bottom: 0; left: 20%;
-            width: 0; height: 0; border: 15px solid transparent;
-            border-top-color: #ffffff; border-bottom: 0; border-left: 0;
-            margin-left: -7.5px; margin-bottom: -15px;
-        }
         #confirmModal, #levelInfoModal { display: none; }
         #confirmModal.active, #levelInfoModal.active { display: flex; }
 
@@ -81,9 +70,10 @@
         <button id="backToModeBtn" class="mt-8 text-yellow-300 hover:text-white transition">Kembali Pilih Mode</button>
     </div>
     
-    <div id="gameScreen" class="screen flex-col w-full h-full max-w-md mx-auto justify-between py-4">
+    <div id="gameScreen" class="screen flex-col w-full h-full max-w-md mx-auto justify-around py-4">
         <div>
             <div class="w-full flex justify-between items-center text-white mb-4 px-2">
+                <button id="backToMenuFromGameBtn" class="bg-red-500/80 hover:bg-red-500 text-white font-bold py-2 px-4 rounded-full shadow-lg text-sm">Keluar</button>
                 <div class="font-bold text-xl">Level: <span id="levelDisplay"></span></div>
                 <div class="font-bold text-xl">Skor: <span id="scoreDisplay">0</span></div>
             </div>
@@ -93,23 +83,23 @@
                     </div>
                 </div>
             </div>
+             <div id="feedback" class="text-4xl text-white text-center font-bold h-12 mt-4"></div>
         </div>
-
+        
         <div class="w-full flex flex-col items-center">
-            <div id="keypad" class="grid grid-cols-6 gap-2 w-full max-w-xs bg-white/30 p-3 rounded-xl">
-                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 rounded-lg shadow-md text-gray-800" data-key="1">1</button>
-                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 rounded-lg shadow-md text-gray-800" data-key="2">2</button>
-                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 rounded-lg shadow-md text-gray-800" data-key="3">3</button>
-                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 rounded-lg shadow-md text-gray-800" data-key="4">4</button>
-                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 rounded-lg shadow-md text-gray-800" data-key="5">5</button>
-                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 rounded-lg shadow-md text-gray-800" data-key="6">6</button>
-                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 rounded-lg shadow-md text-gray-800" data-key="7">7</button>
-                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 rounded-lg shadow-md text-gray-800" data-key="8">8</button>
-                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 rounded-lg shadow-md text-gray-800" data-key="9">9</button>
-                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 rounded-lg shadow-md col-span-2" data-key="0">0</button>
-                <button class="keypad-btn bg-yellow-400 hover:bg-yellow-500 text-xl font-bold p-3 rounded-lg shadow-md" data-key="del">Hapus</button>
+            <div id="keypad" class="grid grid-cols-3 gap-3 w-full bg-white/30 p-4 rounded-xl">
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md text-gray-800" data-key="1">1</button>
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md text-gray-800" data-key="2">2</button>
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md text-gray-800" data-key="3">3</button>
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md text-gray-800" data-key="4">4</button>
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md text-gray-800" data-key="5">5</button>
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md text-gray-800" data-key="6">6</button>
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md text-gray-800" data-key="7">7</button>
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md text-gray-800" data-key="8">8</button>
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md text-gray-800" data-key="9">9</button>
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md" data-key="0">0</button>
+                <button class="keypad-btn bg-yellow-400 hover:bg-yellow-500 text-xl font-bold p-3 sm:p-4 rounded-lg shadow-md col-span-2" data-key="del">Hapus</button>
             </div>
-            <button id="backToMenuFromGameBtn" class="mt-4 bg-red-500/80 hover:bg-red-500 text-white font-bold py-2 px-6 rounded-full shadow-lg text-sm">Keluar</button>
         </div>
     </div>
     
@@ -160,7 +150,6 @@
     const problemGrid = document.getElementById('problem-grid');
     const keypad = document.getElementById('keypad');
     const feedbackEl = document.getElementById('feedback');
-    const kikoMessage = document.getElementById('kikoMessage');
     
     const finalScoreEl = document.getElementById('finalScore');
     const starContainer = document.getElementById('starContainer');
@@ -178,7 +167,6 @@
     const startLevelBtn = document.getElementById('startLevelBtn');
 
     let currentInput;
-
     let currentLevel = 1;
     let currentMode = 'addition';
     let questions = [];
@@ -202,7 +190,7 @@
         questions = [];
         for (let i = 0; i < TOTAL_QUESTIONS; i++) {
             let num1, num2;
-            const digits = currentLevel >= 3 ? currentLevel : 2;
+            const digits = currentLevel >= 3 ? currentLevel + 1 : 2;
             const min = 10 ** (digits - 1);
             const max = (10 ** digits) - 1;
 
@@ -243,8 +231,8 @@
         generateQuestions();
         
         if (currentLevel === 1) {
-            infoModalTitle.textContent = "Level 1: Jawaban Langsung";
-            infoModalText.innerHTML = "Ketik jawaban akhir dari soal, lalu tekan tombol <b>Cek</b>. Tidak ada proses menyimpan di level ini.";
+            infoModalTitle.textContent = "Level 1: Langkah per Langkah";
+            infoModalText.innerHTML = "Sama seperti level lain, tapi tanpa menyimpan. Hitung per kolom dari kanan, lalu tekan tombol <b>Cek</b>.";
         } else {
             infoModalTitle.textContent = `Level ${currentLevel}: Langkah per Langkah`;
             infoModalText.innerHTML = "Hitung satu kolom dari kanan, lalu ketik <b>hasilnya</b> (misal: '13') dan tekan tombol <b>Cek</b> untuk lanjut.";
@@ -333,18 +321,9 @@
         currentInput = document.getElementById('currentInput');
         finalAnswerDisplay = document.getElementById('finalAnswerDisplay');
         
-        document.getElementById('submitStepBtn').addEventListener('click', () => {
-            if (currentLevel === 1) {
-                processLevel1();
-            } else {
-                processLevel2();
-            }
-        });
-
-        if (currentLevel > 1) {
-            highlightCurrentColumn();
-        }
-        updateKikoMessage('default');
+        document.getElementById('submitStepBtn').addEventListener('click', processStep);
+        
+        highlightCurrentColumn();
     }
 
     function highlightCurrentColumn() {
@@ -354,26 +333,18 @@
         document.getElementById(`d2-${digitIndex}`)?.classList.add('active-column');
     }
     
-    function processLevel1() {
-        const userAnswer = parseInt(currentInput.textContent);
-        const correctAnswer = questions[currentQuestionIndex].answer;
-        if (userAnswer === correctAnswer) {
-            handleCorrectAnswer();
-        } else {
-            handleIncorrectAnswer();
-        }
-    }
-
-    function processLevel2() {
+    function processStep() {
         const userInput = parseInt(currentInput.textContent);
         if (isNaN(userInput)) return;
 
         const colIndex1 = qNum1Arr.length - 1 - currentColumn;
         let d1 = qNum1Arr[colIndex1] ?? 0;
         let d2 = qNum2Arr[colIndex1] ?? 0;
+        
+        const currentCarry = currentLevel === 1 ? 0 : carry;
 
         if (currentMode === 'addition') {
-            const correctSum = d1 + d2 + carry;
+            const correctSum = d1 + d2 + currentCarry;
             if (userInput === correctSum) {
                 const digitForAnswer = correctSum % 10;
                 finalAnswer = digitForAnswer + finalAnswer;
@@ -397,12 +368,10 @@
             } else {
                 handleIncorrectAnswer(true);
             }
-        } else { // Subtraction
-            let tempD1 = d1 + carry;
-            carry = 0;
+        } else {
+            let tempD1 = d1 + currentCarry;
 
-            if (tempD1 < d2) {
-                updateKikoMessage('borrow_hint');
+            if (currentLevel > 1 && tempD1 < d2) {
                 let borrowFromIndex = colIndex1 - 1;
                 if(borrowFromIndex >= 0){
                     qNum1Arr[borrowFromIndex]--;
@@ -415,6 +384,7 @@
                 finalAnswer = correctDiff + finalAnswer;
                 finalAnswerDisplay.textContent = finalAnswer;
                 currentInput.textContent = '';
+                carry = 0;
                 moveToNextStep();
             } else {
                 handleIncorrectAnswer(true);
@@ -432,7 +402,6 @@
             handleCorrectAnswer();
         } else {
             highlightCurrentColumn();
-            updateKikoMessage('next_step');
         }
     }
 
@@ -440,20 +409,18 @@
         score++;
         scoreDisplay.textContent = score;
         feedbackEl.textContent = 'Benar! 🎉';
-        feedbackEl.className = 'text-4xl text-white text-center font-bold h-12 mb-2 animate-bounce';
-        updateKikoMessage('correct');
+        feedbackEl.className = 'text-4xl text-white text-center font-bold h-12 mt-4 animate-bounce';
         currentQuestionIndex++;
         setTimeout(() => {
             feedbackEl.textContent = '';
-            feedbackEl.className = 'text-4xl text-white text-center font-bold h-12 mb-2';
+            feedbackEl.className = 'text-4xl text-white text-center font-bold h-12 mt-4';
             displayQuestion();
         }, 1800);
     }
     
     function handleIncorrectAnswer(isStepByStep = false) {
         feedbackEl.textContent = 'Salah! 😥';
-        feedbackEl.className = 'text-4xl text-red-400 text-center font-bold h-12 mb-2';
-        updateKikoMessage('incorrect');
+        feedbackEl.className = 'text-4xl text-red-400 text-center font-bold h-12 mt-4';
         currentInput.textContent = '';
     }
 
@@ -468,23 +435,6 @@
             star.className = `text-6xl ${i < stars ? '' : 'opacity-30'}`;
             starContainer.appendChild(star);
         }
-    }
-    
-    function updateKikoMessage(type) {
-        const messages = {
-            'default': 'Kerjakan kolom paling kanan dulu!',
-            'level1_hint': 'Ketik jawaban akhir dari soal ini!',
-            'level2_hint': 'Ketik hasil hitung untuk kolom ini!',
-            'next_step': 'Bagus! Lanjut ke kolom berikutnya!',
-            'correct': 'Hebat! Kamu Jenius!',
-            'incorrect': 'Oops, coba lagi yuk!',
-            'borrow_hint': 'Perlu pinjam dari sebelah, nih!',
-        };
-        let msg = messages[type];
-        if (type === 'default') {
-            msg = currentLevel === 1 ? messages['level1_hint'] : messages['level2_hint'];
-        }
-        kikoMessage.textContent = msg;
     }
     
     startButton.addEventListener('click', () => showScreen('modeSelectScreen'));
@@ -509,7 +459,7 @@
         if (!e.target.matches('[data-key]')) return;
         if (!currentInput) return;
         const key = e.target.dataset.key;
-        const maxInputLength = (currentLevel === 1) ? 5 : 2;
+        const maxInputLength = (currentLevel > 1 && currentMode === 'addition') ? 2 : 1;
 
         if (key === 'del') {
             currentInput.textContent = currentInput.textContent.slice(0, -1);
