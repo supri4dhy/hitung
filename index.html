@@ -11,53 +11,47 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
+            height: 100vh;
+            overflow: hidden;
         }
         .screen { display: none; }
         .screen.active { display: flex; }
         .keypad-btn { transition: all 0.1s ease; }
         .keypad-btn:active { transform: scale(0.95); }
         .star-container { filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
-        .kiko-character { width: 120px; height: auto; }
+        .kiko-character { width: 100px; height: auto; }
         .speech-bubble {
             position: relative; background: #ffffff; border-radius: .4em;
-            padding: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 0.75rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         .speech-bubble:after {
             content: ''; position: absolute; bottom: 0; left: 20%;
-            width: 0; height: 0; border: 20px solid transparent;
+            width: 0; height: 0; border: 15px solid transparent;
             border-top-color: #ffffff; border-bottom: 0; border-left: 0;
-            margin-left: -10px; margin-bottom: -20px;
+            margin-left: -7.5px; margin-bottom: -15px;
         }
         #confirmModal, #levelInfoModal { display: none; }
         #confirmModal.active, #levelInfoModal.active { display: flex; }
 
-        /* Style untuk menyorot kolom aktif */
         .digit.active-column {
-            color: #2563eb; /* Biru */
+            color: #2563eb;
             font-weight: bold;
             transform: scale(1.1);
         }
-        .strikethrough {
-            position: relative;
-            display: inline-block;
-        }
+        .strikethrough { position: relative; display: inline-block; }
         .strikethrough::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            border-top: 4px solid #ef4444; /* Merah */
+            content: ''; position: absolute; top: 50%; left: 0;
+            right: 0; border-top: 4px solid #ef4444;
             transform: rotate(-10deg);
         }
     </style>
 </head>
-<body class="bg-gradient-to-b from-cyan-400 to-blue-600 min-h-screen flex items-center justify-center p-4">
+<body class="bg-gradient-to-b from-cyan-400 to-blue-600 min-h-screen flex items-center justify-center p-2 sm:p-4">
 
     <!-- Layar Utama -->
     <div id="welcomeScreen" class="screen active flex-col items-center justify-center text-center text-white">
         <h1 class="text-5xl md:text-7xl font-bold text-yellow-300 drop-shadow-lg mb-4">Petualangan Angka Ajaib</h1>
-        <svg class="kiko-character my-6" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <svg class="kiko-character my-6 h-auto w-32" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
             <path fill="#F2A25C" d="M49.8,-53.4C63.2,-42.9,71.8,-26.6,74.5,-9.5C77.2,7.6,73.9,25.4,63.9,39.3C53.8,53.2,36.9,63.1,19.9,68.9C2.9,74.7,-14.3,76.4,-30.7,70.5C-47.1,64.7,-62.7,51.4,-70.2,35.4C-77.7,19.4,-77.1,0.8,-70.7,-14.8C-64.4,-30.4,-52.3,-43,-38.7,-51.2C-25,-59.4,-9.9,-63.3,4.9,-64.3C19.7,-65.3,36.5,-63.9,49.8,-53.4Z" transform="translate(100 100)" />
             <circle cx="90" cy="80" r="8" fill="black"/><circle cx="130" cy="80" r="8" fill="black"/><path d="M 100 95 Q 110 110 120 95" stroke="black" stroke-width="4" fill="none" />
         </svg>
@@ -80,53 +74,61 @@
     <!-- Layar Pilih Level (1-5) -->
     <div id="levelSelectScreen" class="screen flex-col items-center justify-center text-center text-white">
         <h2 class="text-4xl font-bold mb-8 drop-shadow-md">Pilih Level</h2>
-        <div class="w-full max-w-2xl grid grid-cols-1 md:grid-cols-3 gap-4">
-            <button class="level-btn bg-green-500 hover:bg-green-600 text-white font-bold p-4 rounded-lg shadow-lg text-xl" data-level="1">Level 1<br><span class="text-base font-normal">(2 Digit Tanpa Menyimpan)</span></button>
-            <button class="level-btn bg-blue-500 hover:bg-blue-600 text-white font-bold p-4 rounded-lg shadow-lg text-xl" data-level="2">Level 2<br><span class="text-base font-normal">(2 Digit Dengan Menyimpan)</span></button>
+        <div class="w-full max-w-2xl grid grid-cols-2 md:grid-cols-3 gap-4">
+            <button class="level-btn bg-green-500 hover:bg-green-600 text-white font-bold p-4 rounded-lg shadow-lg text-xl" data-level="1">Level 1<br><span class="text-base font-normal">(2 Digit Tanpa Simpan)</span></button>
+            <button class="level-btn bg-blue-500 hover:bg-blue-600 text-white font-bold p-4 rounded-lg shadow-lg text-xl" data-level="2">Level 2<br><span class="text-base font-normal">(2 Digit Dg. Simpan)</span></button>
             <button class="level-btn bg-orange-500 hover:bg-orange-600 text-white font-bold p-4 rounded-lg shadow-lg text-xl" data-level="3">Level 3<br><span class="text-base font-normal">(3 Digit)</span></button>
             <button class="level-btn bg-red-500 hover:bg-red-600 text-white font-bold p-4 rounded-lg shadow-lg text-xl" data-level="4">Level 4<br><span class="text-base font-normal">(4 Digit)</span></button>
-            <button class="level-btn bg-indigo-500 hover:bg-indigo-600 text-white font-bold p-4 rounded-lg shadow-lg text-xl md:col-span-1" data-level="5">Level 5<br><span class="text-base font-normal">(5 Digit)</span></button>
+            <button class="level-btn bg-indigo-500 hover:bg-indigo-600 text-white font-bold p-4 rounded-lg shadow-lg text-xl col-span-2 md:col-span-1" data-level="5">Level 5<br><span class="text-base font-normal">(5 Digit)</span></button>
         </div>
         <button id="backToModeBtn" class="mt-8 text-yellow-300 hover:text-white transition">Kembali Pilih Mode</button>
     </div>
     
-    <!-- Layar Game -->
-    <div id="gameScreen" class="screen flex-col items-center w-full max-w-lg mx-auto">
-        <div class="w-full flex justify-between items-center text-white mb-4">
-            <div class="font-bold text-xl">Level: <span id="levelDisplay"></span></div>
-            <div class="font-bold text-xl">Skor: <span id="scoreDisplay">0</span></div>
-        </div>
-
-        <div class="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-2xl w-full">
-            <div class="flex justify-end">
-                 <div id="problem-grid" class="inline-grid items-center gap-x-3 text-6xl font-bold tracking-wider">
-                    <!-- Konten grid dibuat oleh JavaScript -->
+    <!-- Layar Game (Dirombak untuk Mobile) -->
+    <div id="gameScreen" class="screen flex-col w-full h-full max-w-md mx-auto justify-between py-4">
+        <!-- Bagian Atas: Info & Soal -->
+        <div>
+            <div class="w-full flex justify-between items-center text-white mb-4 px-2">
+                <div class="font-bold text-xl">Level: <span id="levelDisplay"></span></div>
+                <div class="font-bold text-xl">Skor: <span id="scoreDisplay">0</span></div>
+            </div>
+            <div class="bg-white/80 backdrop-blur-sm p-4 sm:p-6 rounded-2xl shadow-2xl w-full">
+                <div class="flex justify-end">
+                     <div id="problem-grid" class="inline-grid items-center gap-x-2 sm:gap-x-3 text-6xl font-bold tracking-wider">
+                        <!-- Konten grid dibuat oleh JavaScript -->
+                    </div>
                 </div>
             </div>
         </div>
         
-        <div class="flex items-end mt-4 w-full">
-             <div class="flex-shrink-0">
-                <svg class="kiko-character -scale-x-100" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path fill="#F2A25C" d="M49.8,-53.4C63.2,-42.9,71.8,-26.6,74.5,-9.5C77.2,7.6,73.9,25.4,63.9,39.3C53.8,53.2,36.9,63.1,19.9,68.9C2.9,74.7,-14.3,76.4,-30.7,70.5C-47.1,64.7,-62.7,51.4,-70.2,35.4C-77.7,19.4,-77.1,0.8,-70.7,-14.8C-64.4,-30.4,-52.3,-43,-38.7,-51.2C-25,-59.4,-9.9,-63.3,4.9,-64.3C19.7,-65.3,36.5,-63.9,49.8,-53.4Z" transform="translate(100 100)" /></svg>
+        <!-- Bagian Tengah: Karakter & Pesan -->
+        <div class="w-full">
+            <div id="feedback" class="text-4xl text-white text-center font-bold h-12 mb-2"></div>
+             <div class="flex items-end mt-2 w-full max-w-xs mx-auto">
+                 <div class="flex-shrink-0">
+                    <svg class="kiko-character -scale-x-100" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path fill="#F2A25C" d="M49.8,-53.4C63.2,-42.9,71.8,-26.6,74.5,-9.5C77.2,7.6,73.9,25.4,63.9,39.3C53.8,53.2,36.9,63.1,19.9,68.9C2.9,74.7,-14.3,76.4,-30.7,70.5C-47.1,64.7,-62.7,51.4,-70.2,35.4C-77.7,19.4,-77.1,0.8,-70.7,-14.8C-64.4,-30.4,-52.3,-43,-38.7,-51.2C-25,-59.4,-9.9,-63.3,4.9,-64.3C19.7,-65.3,36.5,-63.9,49.8,-53.4Z" transform="translate(100 100)" /></svg>
+                </div>
+                <div id="kikoMessage" class="speech-bubble flex-1 text-gray-800 text-center text-sm sm:text-base">Kerjakan dari kanan ya!</div>
             </div>
-            <div id="kikoMessage" class="speech-bubble flex-1 text-gray-800 text-center">Kerjakan dari kanan ya!</div>
         </div>
 
-        <div id="keypad" class="grid grid-cols-3 gap-3 mt-6 w-full max-w-xs bg-white/30 p-4 rounded-xl">
-            <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-4 rounded-lg shadow-md text-gray-800" data-key="7">7</button>
-            <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-4 rounded-lg shadow-md text-gray-800" data-key="8">8</button>
-            <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-4 rounded-lg shadow-md text-gray-800" data-key="9">9</button>
-            <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-4 rounded-lg shadow-md text-gray-800" data-key="4">4</button>
-            <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-4 rounded-lg shadow-md text-gray-800" data-key="5">5</button>
-            <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-4 rounded-lg shadow-md text-gray-800" data-key="6">6</button>
-            <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-4 rounded-lg shadow-md text-gray-800" data-key="1">1</button>
-            <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-4 rounded-lg shadow-md text-gray-800" data-key="2">2</button>
-            <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-4 rounded-lg shadow-md text-gray-800" data-key="3">3</button>
-            <button class="keypad-btn bg-yellow-400 hover:bg-yellow-500 text-xl font-bold p-4 rounded-lg shadow-md" data-key="del">Hapus</button>
-            <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-4 rounded-lg shadow-md col-span-2" data-key="0">0</button>
+        <!-- Bagian Bawah: Keypad & Tombol Keluar -->
+        <div class="w-full flex flex-col items-center">
+            <div id="keypad" class="grid grid-cols-3 gap-3 w-full max-w-xs bg-white/30 p-4 rounded-xl">
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md text-gray-800" data-key="7">7</button>
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md text-gray-800" data-key="8">8</button>
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md text-gray-800" data-key="9">9</button>
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md text-gray-800" data-key="4">4</button>
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md text-gray-800" data-key="5">5</button>
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md text-gray-800" data-key="6">6</button>
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md text-gray-800" data-key="1">1</button>
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md text-gray-800" data-key="2">2</button>
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md text-gray-800" data-key="3">3</button>
+                <button class="keypad-btn bg-yellow-400 hover:bg-yellow-500 text-xl font-bold p-3 sm:p-4 rounded-lg shadow-md" data-key="del">Hapus</button>
+                <button class="keypad-btn bg-white/80 hover:bg-white text-3xl font-bold p-3 sm:p-4 rounded-lg shadow-md col-span-2" data-key="0">0</button>
+            </div>
+            <button id="backToMenuFromGameBtn" class="mt-4 bg-red-500/80 hover:bg-red-500 text-white font-bold py-2 px-6 rounded-full shadow-lg text-sm">Keluar</button>
         </div>
-        <div id="feedback" class="mt-4 text-4xl font-bold h-12"></div>
-        <button id="backToMenuFromGameBtn" class="mt-6 bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-6 rounded-full shadow-lg">Keluar ke Menu</button>
     </div>
     
     <div id="resultScreen" class="screen flex-col items-center justify-center text-center text-white">
@@ -143,7 +145,7 @@
     <div id="confirmModal" class="fixed inset-0 bg-black/50 z-50 items-center justify-center p-4">
         <div class="bg-white rounded-lg p-6 text-center shadow-xl max-w-sm w-full">
             <h3 class="text-xl font-bold text-gray-800 mb-4">Kembali ke Menu?</h3>
-            <p class="text-gray-600 mb-6">Semua progres di permainan ini akan hilang. Kamu yakin?</p>
+            <p class="text-gray-600 mb-6">Progres permainan akan hilang. Kamu yakin?</p>
             <div class="flex justify-center gap-4">
                 <button id="confirmYesBtn" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-6 rounded-lg">Ya, Kembali</button>
                 <button id="confirmNoBtn" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-6 rounded-lg">Batal</button>
@@ -222,7 +224,7 @@
         questions = [];
         for (let i = 0; i < TOTAL_QUESTIONS; i++) {
             let num1, num2;
-            const digits = currentLevel > 2 ? currentLevel : 2;
+            const digits = currentLevel > 2 ? currentLevel + 1 : 2;
             const min = 10 ** (digits - 1);
             const max = (10 ** digits) - 1;
 
@@ -262,7 +264,6 @@
         feedbackEl.textContent = '';
         generateQuestions();
         
-        // Tampilkan info modal
         if (currentLevel === 1) {
             infoModalTitle.textContent = "Level 1: Jawaban Langsung";
             infoModalText.innerHTML = "Ketik jawaban akhir dari soal, lalu tekan tombol <b>Cek</b>. Tidak ada proses menyimpan di level ini.";
@@ -296,14 +297,12 @@
         const numDigits = qNum1Arr.length;
         qNum2Arr = String(q.num2).padStart(numDigits, '0').split('').map(Number);
         
-        // Atur font size berdasarkan jumlah digit
         const fontSizeClass = numDigits > 3 ? (numDigits > 4 ? 'text-4xl' : 'text-5xl') : 'text-6xl';
-        problemGrid.className = `inline-grid items-center gap-x-3 ${fontSizeClass} font-bold tracking-wider`;
+        problemGrid.className = `inline-grid items-center gap-x-2 sm:gap-x-3 ${fontSizeClass} font-bold tracking-wider`;
         
         problemGrid.style.gridTemplateColumns = `repeat(${numDigits}, auto) auto`;
         const totalCols = numDigits + 1;
 
-        // Baris 1: Carry
         for(let i = 0; i < numDigits; i++) {
             const cell = document.createElement('div');
             cell.id = `carry-digit-${i}`;
@@ -313,7 +312,6 @@
         }
         problemGrid.appendChild(document.createElement('div'));
 
-        // Baris 2: Angka Pertama
         qNum1Arr.forEach((d, i) => {
             const cell = document.createElement('div');
             cell.id = `d1-${i}`;
@@ -323,7 +321,6 @@
         });
         problemGrid.appendChild(document.createElement('div'));
 
-        // Baris 3: Angka Kedua & Operator
         qNum2Arr.forEach((d, i) => {
             const cell = document.createElement('div');
             cell.id = `d2-${i}`;
@@ -336,12 +333,10 @@
         opCell.textContent = currentMode === 'addition' ? '+' : '-';
         problemGrid.appendChild(opCell);
         
-        // Baris 4: Garis
         const hr = document.createElement('hr');
         hr.className = `col-span-${totalCols} border-t-4 border-gray-700 my-2`;
         problemGrid.appendChild(hr);
         
-        // Baris 5: Jawaban & Tombol Cek
         const answerCell = document.createElement('div');
         answerCell.className = `col-span-${numDigits} text-blue-600 flex justify-end items-center text-right`;
         answerCell.innerHTML = `
@@ -357,8 +352,8 @@
         btnCell.innerHTML = `<button id="submitStepBtn" class="keypad-btn bg-green-500 hover:bg-green-600 text-white text-2xl font-bold py-3 px-5 rounded-lg shadow-md self-center">Cek</button>`;
         problemGrid.appendChild(btnCell);
         
-        finalAnswerDisplay = document.getElementById('finalAnswerDisplay');
         currentInput = document.getElementById('currentInput');
+        finalAnswerDisplay = document.getElementById('finalAnswerDisplay');
         
         document.getElementById('submitStepBtn').addEventListener('click', () => {
             if (currentLevel === 1) {
@@ -396,7 +391,6 @@
         if (isNaN(userInput)) return;
 
         const colIndex1 = qNum1Arr.length - 1 - currentColumn;
-        
         let d1 = qNum1Arr[colIndex1] ?? 0;
         let d2 = qNum2Arr[colIndex1] ?? 0;
 
@@ -426,22 +420,15 @@
                 handleIncorrectAnswer(true);
             }
         } else { // Subtraction
-            let tempD1 = d1 + (carry * 10);
-            if(carry < 0) tempD1 = d1 + carry;
+            let tempD1 = d1 + carry;
             carry = 0;
 
             if (tempD1 < d2) {
                 updateKikoMessage('borrow_hint');
                 let borrowFromIndex = colIndex1 - 1;
-                while(borrowFromIndex >= 0 && qNum1Arr[borrowFromIndex] === 0) {
-                    qNum1Arr[borrowFromIndex] = 9;
-                    document.getElementById(`d1-${borrowFromIndex}`).innerHTML = `<span class="strikethrough">0</span><span class="text-orange-500">9</span>`;
-                    borrowFromIndex--;
-                }
-                if (borrowFromIndex >= 0) {
-                    const originalDigit = qNum1Arr[borrowFromIndex];
+                if(borrowFromIndex >= 0){
                     qNum1Arr[borrowFromIndex]--;
-                    document.getElementById(`d1-${borrowFromIndex}`).innerHTML = `<span class="strikethrough">${originalDigit}</span><span class="text-orange-500">${qNum1Arr[borrowFromIndex]}</span>`;
+                    document.getElementById(`d1-${borrowFromIndex}`).innerHTML = `<span class="strikethrough">${qNum1Arr[borrowFromIndex]+1}</span><span class="text-orange-500">${qNum1Arr[borrowFromIndex]}</span>`;
                     tempD1 += 10;
                 }
             }
@@ -474,19 +461,20 @@
     function handleCorrectAnswer() {
         score++;
         scoreDisplay.textContent = score;
-        feedbackEl.textContent = 'Benar! �';
-        feedbackEl.className = 'mt-4 text-4xl font-bold h-12 text-green-500 animate-bounce';
+        feedbackEl.textContent = 'Benar! 🎉';
+        feedbackEl.className = 'text-4xl text-white text-center font-bold h-12 mb-2 animate-bounce';
         updateKikoMessage('correct');
         currentQuestionIndex++;
         setTimeout(() => {
             feedbackEl.textContent = '';
+            feedbackEl.className = 'text-4xl text-white text-center font-bold h-12 mb-2';
             displayQuestion();
         }, 1800);
     }
     
     function handleIncorrectAnswer(isStepByStep = false) {
         feedbackEl.textContent = 'Salah! 😥';
-        feedbackEl.className = 'mt-4 text-4xl font-bold h-12 text-red-500';
+        feedbackEl.className = 'text-4xl text-red-400 text-center font-bold h-12 mb-2';
         updateKikoMessage('incorrect');
         currentInput.textContent = '';
     }
@@ -542,6 +530,7 @@
     
     keypad.addEventListener('click', (e) => {
         if (!e.target.matches('[data-key]')) return;
+        if (!currentInput) return;
         const key = e.target.dataset.key;
         const maxInputLength = (currentLevel === 1) ? 5 : 2;
 
@@ -568,4 +557,3 @@
 </script>
 </body>
 </html>
-�
